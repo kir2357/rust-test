@@ -456,3 +456,156 @@ CStringのライフタイム終了後、setter()に値が渡される
 ゼロの1kVecの初期化(``let mut buffer = vec![0u8; 1024]``)が遅いという疑問
 
 マクロの最適化でOSの機能並に高速に（これ以上早い代替案は困難）
+
+## 2.10. Iterating over an Option
+
+Option型はIteratorトレイトを実装している
+
+### extend()メソッドの引数として使用できる
+
+```rust
+let turing = Some("Turing");
+let mut logicians = vec!["Curry", "Kleene", "Markov"];
+
+logicians.extend(turing);
+
+// 以下と等しい
+if let Some(turing_inner) = turing {
+    logicians.push(turing_inner);
+}
+```
+
+### chain()メソッド
+
+```rust
+let turing = Some("Turing");
+let logicians = vec!["Curry", "Kleene", "Markov"];
+
+for logician in logicians.iter().chain(turing.iter()) {
+    println!("{} is a logician", logician);
+}
+```
+
+永続的に追加するか一時的に追加するかの違い
+
+## 2.11. Pass Variables to Closure
+
+クロージャーはデフォルトで与えられた変数を
+
+- 借用によってキャプチャする
+- move クロージャーを使って環境全体をmoveする
+
+しかし、いくつかの変数だけをクロージャに移動させたり、いくつかのデータのコピーを与えたり、参照で渡したり、他の変換を行いたい場合がよくあります
+
+⇒　別スコープで変数のリバイディングする
+
+```rust
+use std::rc::Rc;
+
+let num1 = Rc::new(1);
+let num2 = Rc::new(2);
+let num3 = Rc::new(3);
+
+let num2_cloned = num2.clone();
+let num3_borrowed = num3.as_ref();
+let closure = move || {
+    *num1 + *num2_cloned + *num3_borrowed;
+};
+```
+
+上を下にする
+
+```rust
+use std::rc::Rc;
+
+let num1 = Rc::new(1);
+let num2 = Rc::new(2);
+let num3 = Rc::new(3);
+let closure = {
+    // `num1` is moved
+    let num2 = num2.clone();  // `num2` is cloned
+    let num3 = num3.as_ref();  // `num3` is borrowed
+    move || {
+        *num1 + *num2 + *num3;
+    }
+};
+```
+
+### 利点
+
+コピーされたデータはクロージャの定義と一緒にグループ化されているので、目的がより明確になり、クロージャで消費されなくてもすぐにdropされている
+
+クロージャーでは周囲のコードと同じ変数名を使用している
+
+### 欠点
+
+ネストが一段深くなる
+
+## 2.12. Privacy For Extensibility
+
+後方互換性を損なうことなく public フィールドを public 構造体に追加したり、新しいバリアントを列挙型に追加する手段
+
+- #[non_exhaustive] 属性をstructにつける
+- プライベートフィールドを使う
+
+プライベートフィールドでよさげ
+
+### 議論
+
+クライアントがパターンを使用して構造体を作成している場合、ライブラリ側でフィールドを追加してしまうとクライアントのプログラムが動かなくなる
+
+⇒　クライアント側でパターン記述ないで..を使用する
+
+```rust
+mod a {
+    // public な構造体
+    pub struct S {
+        pub foo: i32,
+        // プライベートフィールド
+        bar: i32,
+    }
+}
+
+fn main(s: a::S) {
+    // S::bar はプライベートなので、ここでは名前をつけることができずパターン内で `..` を使わなければならない
+    let a::S { foo: _, ..} = s;
+}
+
+```
+
+欠点として、不要なフィールドを構造体内に追加する必要があかもしれないこと
+
+実行時にオーバーヘッドが内容に()型を使用し、フィールド名の前に_を追加することで未使用のフィールドの警告回避できる
+
+もし Rust が列挙型のプライベート変数を許可しているならば、列挙型にバリアントを追加して下位互換性を持たせるために同じトリックを使うことができます。ここで問題となるのは、網羅的なマッチ式です。プライベート変数はクライアントに _ ワイルドカードパターンを強制します。代わりにこれを実装する一般的な方法は #[non_exhaustive] 属性を使用することです。
+
+⇒よく意味が分からん。パターンを強制とは
+
+## 2.13. Easy doc initialization
+
+ドキュメントのルールが分からないので何を解決したいのか分からない
+
+ドキュメント中のコードをテストする方法がある？
+
+## 2.14. Temporary mutability
+
+変数の処理を行うために一時的にmutableでかこう、以降immutableにしたい場合
+
+```rust
+// ネストで実現
+let data = {
+    let mut data = get_vec();
+    data.sort();
+    data
+};
+
+// ここでは `data` はイミュータブル
+
+// リバイディングで実現
+let mut data = get_vec();
+data.sort();
+let data = data;
+
+// ここでは `data` はイミュータブル
+```
+

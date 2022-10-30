@@ -3,6 +3,10 @@
 version = 3
 
 [[package]]
+name = "design_patterns"
+version = "0.1.0"
+
+[[package]]
 name = "idioms"
 version = "0.1.0"
 
