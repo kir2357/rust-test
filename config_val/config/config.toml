@@ -1,0 +1,7 @@
+[csv.output]
+file_path = "{CUR}//data//config_output_%Y%m%d_%H%M%S.csv"
+char_code = "shift-jis"
+
+[calc]
+value1 = 100
+value2 = 200

@@ -1,0 +1,31 @@
+###
+http://localhost:4000/
+
+###
+POST http://localhost:4000/shorten
+content-type: application/json
+
+{
+    "id": 1,
+    "name": "tanaka",
+    "attribute": {
+        "gender": "male",
+        "phone_number": "xxxxxxxxxxx",
+        "birth": "1991/01/01"
+    }
+}
+
+###
+# オウム返しサイトへのPOSTテスト
+POST https://httpbin.org/post HTTP/1.1
+content-type: application/json
+
+{
+    "id": 1,
+    "name": "tanaka",
+    "attribute": {
+        "gender": "male",
+        "phone_number": "xxxxxxxxxxx",
+        "birth": "1991/01/01"
+    }
+}

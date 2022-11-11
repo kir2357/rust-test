@@ -1,16 +1,10 @@
 [package]
-name = "test_code"
+name = "config_val"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-[workspace]
-members = [
-  "idioms",
-  "design_patterns",
-  "axum_url_shortener",
-  "config_val"
-  ]
-# default-members = [""]
 
 [dependencies]
+lazy_static = "1.4.0" 
+toml = "0.5.6" 
