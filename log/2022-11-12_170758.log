@@ -1,0 +1,4 @@
+INFO,2022-11-12T17:07:58.286496200+09:00,logging_example\src\main.rs,11,logging_example,infoです,
+WARN,2022-11-12T17:07:58.286750200+09:00,logging_example\src\main.rs,12,logging_example,warnです,
+ERROR,2022-11-12T17:07:58.286870600+09:00,logging_example\src\main.rs,13,logging_example,errorです,
+ERROR,2022-11-12T17:07:58.290548900+09:00,logging_example\src\init.rs,38,logging_example::init,logger:panicked at 'test2', logging_example\src\main.rs:17:5,

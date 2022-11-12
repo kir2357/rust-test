@@ -9,7 +9,8 @@ members = [
   "idioms",
   "design_patterns",
   "axum_url_shortener",
-  "config_val"
+  "config_val",
+  "logging_example"
   ]
 # default-members = [""]
 
