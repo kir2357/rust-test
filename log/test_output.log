@@ -1,8 +1,0 @@
-INFO,2022-11-12T16:47:23.924145300+09:00,logging_example\src\main.rs,11,logging_example,infoです,
-WARN,2022-11-12T16:47:23.925198100+09:00,logging_example\src\main.rs,12,logging_example,warnです,
-ERROR,2022-11-12T16:47:23.925265100+09:00,logging_example\src\main.rs,13,logging_example,errorです,
-ERROR,2022-11-12T16:47:23.926717800+09:00,logging_example\src\init.rs,33,logging_example::init,logger:panicked at 'test2', logging_example\src\main.rs:17:5,
-INFO,2022-11-12T16:57:29.284231+09:00,logging_example\src\main.rs,11,logging_example,infoです,
-WARN,2022-11-12T16:57:29.285468800+09:00,logging_example\src\main.rs,12,logging_example,warnです,
-ERROR,2022-11-12T16:57:29.287086800+09:00,logging_example\src\main.rs,13,logging_example,errorです,
-ERROR,2022-11-12T16:57:29.288514200+09:00,logging_example\src\init.rs,34,logging_example::init,logger:panicked at 'test2', logging_example\src\main.rs:17:5,
