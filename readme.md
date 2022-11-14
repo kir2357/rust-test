@@ -30,6 +30,14 @@ Rustでのバックエンドの実現性検討
 
 ⇒ VSnote:Rust_axum検討
 
+## config_val
+
+設定値の外部ファイルからの取得検討
+
+## logging_example
+
+ロギングについての検検証
+
 ## TODO
 
 - [Rustのパターンっぽいやつメモ](https://gist.github.com/qnighy/be99c2ece6f3f4b1248608a04e104b38)

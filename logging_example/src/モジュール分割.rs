@@ -1,13 +1,11 @@
-// モジュール分割その２
-
 #[macro_use]
 extern crate log;
 // extern crateはrootファイルにしか書けない
 
-mod init2;
+mod init;
 
 fn main() {
-    init2::init();
+    init::init();
 
     debug!("debugです");
     info!("infoです");
