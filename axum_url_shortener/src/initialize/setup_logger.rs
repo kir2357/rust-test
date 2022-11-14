@@ -1,4 +1,3 @@
-
 use chrono::{DateTime, Local};
 use log::LevelFilter;
 use log4rs::{
@@ -8,7 +7,10 @@ use log4rs::{
 };
 
 #[cfg(debug_assertions)]
-use log4rs::append::console::{ConsoleAppender, Target};
+use log4rs::{
+    append::console::{ConsoleAppender, Target},
+    filter::threshold::ThresholdFilter,
+};
 
 
 pub fn setup_logger() {
@@ -38,6 +40,7 @@ fn make_logger(log_file_path: &str) {
         .appender(Appender::builder().build("logfile", Box::new(logfile)))
         .appender(
             Appender::builder()
+                .filter(Box::new(ThresholdFilter::new(LevelFilter::Info)))
                 .build("stderr", Box::new(stderr)),
         )
         .build(

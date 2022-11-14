@@ -1,10 +1,10 @@
-#[macro_use]
-extern crate lazy_static;
-extern crate toml;
+// #[macro_use]
+// extern crate lazy_static;
+// extern crate toml;
 
 // mod initialize{pub mod file_config;}
 mod initialize;
-use initialize::file_config::CONFIG;
+use initialize::file_config_2::CONFIG;
 
 fn main() {
     println!("aaaaaa");

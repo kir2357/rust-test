@@ -1,9 +1,12 @@
 use std::panic::{self, PanicInfo};
-mod logger;
+mod setup_logger;
+
+mod load_config;
+pub use load_config::CONFIG;
 
 pub fn init() {
     setup_panic();
-    logger::setup_logger();
+    setup_logger::setup_logger();
 }
 
 fn setup_panic() {

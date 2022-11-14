@@ -32,11 +32,27 @@ Rustでのバックエンドの実現性検討
 
 ## config_val
 
-設定値の外部ファイルからの取得検討
+設定値の外部ファイルからの取得検討 ⇒ tomlからの設定値取得はしんどい
 
 ## logging_example
 
 ロギングについての検検証
+
+## dotenv_example
+
+dotenvクレートを用いた設定値取得。⇒設定値のない時の処理がめんどい
+
+[Rustのdotenvの使い方まとめ - Qiita](https://qiita.com/Yukimura127/items/c3f199bbdfb0fee34015)
+
+## confy_example
+
+confyクレートを用いた設定値取得
+
+[Rust製の設定管理ライブラリconfyを試す - Qiita](https://qiita.com/Tadahiro_Yamamura/items/7c5637371e83752cd13a)
+
+デフォルトの出力場所はWindows: {FOLDERID_RoamingAppData}\{app_name}
+
+設定ファイル内にキーが不足するとエラー
 
 ## TODO
 

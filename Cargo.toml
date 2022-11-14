@@ -10,7 +10,9 @@ members = [
   "design_patterns",
   "axum_url_shortener",
   "config_val",
-  "logging_example"
+  "logging_example",
+  "dotenv_example",
+  "confy_example"
   ]
 # default-members = [""]
 
