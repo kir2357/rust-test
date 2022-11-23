@@ -4,7 +4,6 @@ http://localhost:4000/
 ###
 POST http://localhost:4000/shorten
 content-type: application/json
-
 {
     "id": 1,
     "name": "tanaka",
@@ -14,7 +13,22 @@ content-type: application/json
         "birth": "1991/01/01"
     }
 }
+###
+# jsonパーサーのテスト
+POST http://localhost:4000
+content-type: application/json
 
+{
+    "a": 1.0,
+    "b": [
+        true,
+        "foo\nbar",
+        { "c": {"d": null} }
+    ],
+    "c":5112,
+    "d":"sassss"
+}
+        
 ###
 # オウム返しサイトへのPOSTテスト
 POST https://httpbin.org/post HTTP/1.1

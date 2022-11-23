@@ -54,6 +54,12 @@ confyクレートを用いた設定値取得
 
 設定ファイル内にキーが不足するとエラー
 
+## axum_url_shortener
+
+### 受信Jsonのパース
+
+[struct <-> String <-> Json - Qiita](https://qiita.com/rejasupotaro/items/17328120decd3e4425d6)
+
 ## TODO
 
 - [Rustのパターンっぽいやつメモ](https://gist.github.com/qnighy/be99c2ece6f3f4b1248608a04e104b38)
