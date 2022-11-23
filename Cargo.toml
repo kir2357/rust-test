@@ -7,12 +7,7 @@ edition = "2021"
 [workspace]
 members = [
   "idioms",
-  "design_patterns",
-  "axum_url_shortener",
-  "config_val",
-  "logging_example",
-  "dotenv_example",
-  "confy_example"
+  "design_patterns"
   ]
 # default-members = [""]
 
